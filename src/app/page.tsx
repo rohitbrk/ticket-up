@@ -367,9 +367,21 @@ export default function App() {
       <div className="flex items-center justify-between gap-y-2">
         <div className="flex gap-x-1">
           <h1 className="text-gray-800 text-3xl font-bold">Ticket Up</h1>{" "}
-          <Button className="icon" onClick={() => setShowLoginModal(true)}>
-            Login
-          </Button>
+          {user?.username ? (
+            <Button
+              variant="outline"
+              onClick={() => {
+                const logoutFlag = confirm("logout?");
+                if (logoutFlag) setUser({ username: "", password: "" });
+              }}
+            >
+              {user.username}
+            </Button>
+          ) : (
+            <Button className="icon" onClick={() => setShowLoginModal(true)}>
+              Login
+            </Button>
+          )}
         </div>
         <Button onClick={() => setShowAddContainerModal(true)}>
           Add Container
