@@ -47,6 +47,9 @@ export default function App() {
   const [showAddContainerModal, setShowAddContainerModal] = useState(false);
   const [showAddItemModal, setShowAddItemModal] = useState(false);
 
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [user, setUser] = useState({ username: "", password: "" });
+
   const onAddContainer = () => {
     if (!containerName) return;
     const id = `container-${uuidv4()}`;
@@ -335,8 +338,39 @@ export default function App() {
           <Button onClick={onAddItem}>Add Item</Button>
         </div>
       </Modal>
+      <Modal showModal={showLoginModal} setShowModal={setShowLoginModal}>
+        <div className="flex flex-col w-full items-start gap-y-4">
+          <h1 className="text-gray-800 text-3xl font-bold">
+            Enter Credentials
+          </h1>
+          <Input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={user.username}
+            onChange={(e) =>
+              setUser((prev) => ({ ...prev, username: e.target.value }))
+            }
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={user.password}
+            onChange={(e) =>
+              setUser((prev) => ({ ...prev, password: e.target.value }))
+            }
+          />
+          <Button onClick={() => alert("login successful")}>Login</Button>
+        </div>
+      </Modal>
       <div className="flex items-center justify-between gap-y-2">
-        <h1 className="text-gray-800 text-3xl font-bold">Ticket Up</h1>
+        <div className="flex gap-x-1">
+          <h1 className="text-gray-800 text-3xl font-bold">Ticket Up</h1>{" "}
+          <Button className="icon" onClick={() => setShowLoginModal(true)}>
+            Login
+          </Button>
+        </div>
         <Button onClick={() => setShowAddContainerModal(true)}>
           Add Container
         </Button>

@@ -8,9 +8,10 @@ interface InputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ name, value, placeholder, onChange }: InputProps) => {
+const Input = ({ type, name, value, placeholder, onChange }: InputProps) => {
   return (
     <input
+      type={type}
       name={name}
       value={value}
       placeholder={placeholder}
