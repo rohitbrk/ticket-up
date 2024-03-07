@@ -361,7 +361,12 @@ export default function App() {
               setUser((prev) => ({ ...prev, password: e.target.value }))
             }
           />
-          <Button onClick={() => alert("login successful")}>Login</Button>
+          <Button onClick={() => {
+            alert("login successful")
+            setShowLoginModal(false)
+          }}
+          >
+            Login</Button>
         </div>
       </Modal>
       <div className="flex items-center justify-between gap-y-2">
